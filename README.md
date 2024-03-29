@@ -23,6 +23,20 @@ build_flags =
             -mwindows
 extra_scripts = post:scripts/windows.py
 ```
+### 在MacOSX下构建
+```
+brew install fltk
+```
+### platformio.ini for MacOSX
+```
+[env:fltk]
+platform = native
+build_flags = 
+            -lfltk
+            -lpthread 
+            -lm
+extra_scripts = post:scripts/macosx.py
+```
 ### 在Ubuntu下构建
 ```
 sudo apt install libfltk1.3-dev
