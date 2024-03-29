@@ -4,8 +4,8 @@ import os
 import subprocess
 Import("env","projenv")
 
-if os.path.isfile(projenv.subst("$BUILD_DIR\\$PROGNAME$PROGSUFFIX")):
-    os.remove(projenv.subst("$BUILD_DIR\\$PROGNAME$PROGSUFFIX"))
+if os.path.isfile(projenv.subst("$BUILD_DIR/$PROGNAME$PROGSUFFIX")):
+    os.remove(projenv.subst("$BUILD_DIR/$PROGNAME$PROGSUFFIX"))
 def copyFiles(src_dir, dst_dir):
     for foldername, subfolders, filenames in os.walk(src_dir):
         for filename in filenames:
@@ -22,10 +22,9 @@ def mkdir(path):
 		os.makedirs(path)
 def post_program_action(source, target, env):
     mkdir("./build")
-    copyFiles("./dll", "./build")
-    if os.path.isfile(projenv.subst("$BUILD_DIR\\$PROGNAME$PROGSUFFIX")):
-        shutil.copyfile(projenv.subst("$BUILD_DIR\\$PROGNAME$PROGSUFFIX"), "./build/fltk.exe")
-        p = subprocess.Popen("./build/fltk.exe")
+    if os.path.isfile(projenv.subst("$BUILD_DIR/$PROGNAME$PROGSUFFIX")):
+        shutil.copyfile(projenv.subst("$BUILD_DIR/$PROGNAME$PROGSUFFIX"), "./build/fltk")
+        p = subprocess.Popen("./build/fltk")
         p.wait()
         
 env.AddPostAction("$PROGPATH", post_program_action)

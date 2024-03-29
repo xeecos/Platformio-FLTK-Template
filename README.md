@@ -6,7 +6,7 @@
 
 本代码库是一个使用PlatformIO开发的FLTK GUI应用程序的项目示例。该示例展示了如何在VSCode中使用PlatformIO构建和运行FLTK应用程序。
 
-### platformio.ini
+### platformio.ini for Windows
 ```
 [env:fltk]
 platform = windows_x86
@@ -21,9 +21,22 @@ build_flags =
             -lpthread 
             -lm
             -mwindows
-extra_scripts = post:scripts/build.py
+extra_scripts = post:scripts/windows.py
 ```
-
+### 在Ubuntu下构建
+```
+sudo apt install libfltk1.3-dev
+```
+### platformio.ini for Linux
+```
+[env:fltk]
+platform = native
+build_flags = 
+            -lfltk
+            -lpthread 
+            -lm
+extra_scripts = post:scripts/linux.py
+```
 ### 示例代码
 ```
 #include <FL/Fl.H>
